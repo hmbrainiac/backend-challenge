@@ -26,7 +26,10 @@ $app = new Laravel\Lumen\Application(
 $app->withFacades();
 
 // $app->withEloquent();
-class_alias('Ixudra\Curl\Facades\Curl', 'Curl');
+class_alias(Ixudra\Curl\Facades\Curl, 'Curl');
+class_alias(Flugg\Responder\Facades\Responder::class, 'Responder');
+class_alias(Flugg\Responder\Facades\Transformation::class, 'Transformation');
+
 /*
 |--------------------------------------------------------------------------
 | Register Container Bindings
@@ -95,6 +98,7 @@ $app->configure('app');
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Ixudra\Curl\CurlServiceProvider::class);
+$app->register(Flugg\Responder\ResponderServiceProvider::class);
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
