@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Ixudra\Curl\Facades\Curl;
 
 class LanguageRetrievalController extends Controller
 {
@@ -16,9 +17,21 @@ class LanguageRetrievalController extends Controller
         //
     }
 
-    //
+    /**
+     * Retrieval of languages from github
+     *
+     * @return response
+     */
+    public function retrieveLanguages()
+    {
+        $languages = [];
+        $tempLanguages = [];
 
-    function retrieveLanguages(){
-        
+        //Retrieve list of highest stared repositories for the past 30 days
+        $response = Curl::to('https://api.github.com/search/repositories')
+            ->withHeader('User-Agent: lumen-curl')
+            ->withData(array('q' => 'created:>' . Carbon::now()->subDays(30)->toIso8601String(), 'per_page' => 100, 'sort' => 'stars', 'order' => 'desc'))
+            ->get();
+        return response()->json(['data'=>json_decode($response)]);
     }
 }
