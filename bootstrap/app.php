@@ -26,9 +26,9 @@ $app = new Laravel\Lumen\Application(
 $app->withFacades();
 
 // $app->withEloquent();
-class_alias(Ixudra\Curl\Facades\Curl, 'Curl');
-class_alias(Flugg\Responder\Facades\Responder::class, 'Responder');
-class_alias(Flugg\Responder\Facades\Transformation::class, 'Transformation');
+class_alias("Ixudra\Curl\Facades\Curl", 'Curl');
+class_alias("Flugg\Responder\Facades\Responder", 'Responder');
+class_alias("Flugg\Responder\Facades\Transformation", 'Transformation');
 
 /*
 |--------------------------------------------------------------------------
