@@ -2,6 +2,7 @@
 
 use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
+use Illuminate\Http\Response;
 
 class ChallengeTestCases extends TestCase
 {
@@ -10,11 +11,10 @@ class ChallengeTestCases extends TestCase
      *
      * @return void
      */
-    public function testExample()
+    public function testChallenge()
     {
         
-        $response = $this->get('/most-used-languages');
-
+        $response = $this->call('GET', '/most-used-languages');        
         $this->assertEquals(200, $response->status());
     }
 }
