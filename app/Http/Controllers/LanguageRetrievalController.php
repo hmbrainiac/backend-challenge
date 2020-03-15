@@ -17,4 +17,8 @@ class LanguageRetrievalController extends Controller
     }
 
     //
+
+    function retrieveLanguages(){
+        
+    }
 }
