@@ -9,16 +9,7 @@ use App\Traits\RetrieveRepos;
 class LanguageRetrievalController extends Controller
 {
     use ResponseTransformer;
-    use RetrieveRepos;
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
+    use RetrieveRepos;   
 
     /**
      * Retrieval of languages from github
@@ -29,11 +20,11 @@ class LanguageRetrievalController extends Controller
     {
 
         //Retrieve list of highest 100 starred repositories for the past 30 days
-        $response = $this->fetchMostStarred(30, 100);        
+        $response = $this->fetchMostStarred(30, 100)->items;        
         //Format response
-        $formattedResponse = $this->formatResponse($response->items);
+        $formattedResponse = $this->formatResponse($response);
 
         //Return response
-        return response()->json(['error' => ["code" => "00", "message" => "Most languages used retrieved"], 'count' => sizeof($formattedResponse), 'data' => $formattedResponse]);
+        return response()->json(['error' => ["code" => "00", "message" => "Most used languages used retrieved"], 'count' => sizeof($formattedResponse), 'data' => $formattedResponse]);
     }
 }
