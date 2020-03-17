@@ -12,8 +12,8 @@ class ChallengeTestCases extends TestCase
      */
     public function testChallenge()
     {        
-        $response = $this->call('GET', '/most-used-languages');        
-        $this->assertEquals(200, $response->status());
+        $response = $this->json('GET', '/most-used-languages', [], ['Authorization'=>'Basic '.base64_encode(env('API_USERNAME') . ":" . env('API_PASSWORD'))]);
+        $this->assertEquals(200, $this->response->status());
     }
 
 }
